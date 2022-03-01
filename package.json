@@ -1,0 +1,42 @@
+{
+	"name": "my-project",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"serve": "vue-cli-service serve",
+		"build": "vue-cli-service build --modern",
+		"test:Avatar": "vue serve ./src/components/Avatar/test.vue",
+		"test:Empty": "vue serve ./src/components/Empty/test.vue",
+		"test:Icon": "vue serve ./src/components/Icon/test.vue",
+		"test:Pager": "vue serve ./src/components/Pager/test.vue",
+		"test:ImageLoader": "vue serve ./src/components/ImageLoader/test.vue",
+		"test:Contact": "vue serve ./src/components/SideAside/Contact/test.vue",
+		"test:Menu": "vue serve ./src/components/SideAside/Menu/test.vue",
+		"test:SideMenu": "vue serve ./src/components/SideAside/test.vue",
+		"test:Layout": "vue serve ./src/components/Layout/test.vue",
+		"test:Loading": "vue serve ./src/components/Loading/test.vue",
+		"test:MenuList": "vue serve ./src/components/MenuList/test.vue",
+		"test:MessageArea": "vue serve ./src/components/MessageArea/test.vue",
+		"test:ToTop": "vue serve ./src/components/ToTop/test.vue",
+		"test:NotFound": "vue serve ./src/components/NotFound/test.vue"
+	},
+	"dependencies": {
+		"axios": "^0.24.0",
+		"core-js": "^3.6.5",
+		"highlight.js": "^10.7.3",
+		"nprogress": "^0.2.0",
+		"qs": "^6.10.2",
+		"vue": "^2.6.11",
+		"vue-router": "^3.5.3",
+		"vuex": "^3.6.2"
+	},
+	"devDependencies": {
+		"@vue/cli-plugin-babel": "~4.5.0",
+		"@vue/cli-service": "~4.5.0",
+		"less": "^3.0.4",
+		"less-loader": "^5.0.0",
+		"mockjs": "^1.1.0",
+		"vue-template-compiler": "^2.6.11",
+		"webpack-bundle-analyzer": "^4.5.0"
+	}
+}
