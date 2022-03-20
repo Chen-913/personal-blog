@@ -9,18 +9,18 @@ import MenuList from "@/components/MenuList/MenuList.vue";
 import { debounce } from "@/utils";
 export default {
 	components: {
-		MenuList,
+		MenuList
 	},
 	props: {
 		list: {
 			type: Object,
-			require: true,
-		},
+			require: true
+		}
 	},
 	data() {
 		return {
 			// 当前浏览的标题anchor
-			activeAnchor: "",
+			activeAnchor: ""
 		};
 	},
 	computed: {
@@ -31,7 +31,7 @@ export default {
 					return {
 						...item,
 						isSelected: this.activeAnchor === item.anchor,
-						children: addSelected(item.children),
+						children: addSelected(item.children)
 					};
 				});
 			};
@@ -50,7 +50,7 @@ export default {
 			};
 			addDom(this.list.toc);
 			return arr;
-		},
+		}
 	},
 	methods: {
 		handleNoticed(item) {
@@ -84,14 +84,14 @@ export default {
 					this.activeAnchor = dom.id;
 				}
 			}
-		},
+		}
 	},
 	created() {
 		this.$eventBus.$on("mainScroll", debounce(this.setSelect));
 	},
 	beforeDestroy() {
 		this.$eventBus.$off("mainScroll", this.setSelect);
-	},
+	}
 };
 </script>
 

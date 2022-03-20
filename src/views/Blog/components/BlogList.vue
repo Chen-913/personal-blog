@@ -1,18 +1,18 @@
 <template>
 	<div class="blog-list-container" ref="blogList" v-loading="isLoading">
-		<ul>
+		<ul v-if="data.rows.length !== 0">
 			<li v-for="item in data.rows" :key="item.id">
 				<div class="thumb" v-if="item.thumb">
 					<RouterLink
 						:to="{
 							name: 'Detail',
 							params: {
-								blogId: item.id,
-							},
+								blogId: item.id
+							}
 						}"
 					>
 						<img
-							v-img-lazy="item.thumb"
+							v-img-lazy="serverConfig.serverURL + item.thumb"
 							:alt="item.title"
 							:title="item.title"
 						/>
@@ -24,8 +24,8 @@
 							:to="{
 								name: 'Detail',
 								params: {
-									blogId: item.id,
-								},
+									blogId: item.id
+								}
 							}"
 							>{{ item.title }}</RouterLink
 						>
@@ -38,17 +38,18 @@
 						>
 						<span class="visit-count">浏览:{{ item.scanNumber }}</span>
 						<span class="comment-count">评论:{{ item.commentNumber }}</span>
-						<span class="category"
-							><RouterLink
+						<span class="category" v-if="item.category">
+							<RouterLink
 								:to="{
 									name: 'BlogCategory',
 									params: {
-										categoryId: item.category.id,
-									},
+										categoryId: item.category.id
+									}
 								}"
-								>{{ item.category.name }}</RouterLink
-							></span
-						>
+							>
+								{{ item.category.name }}
+							</RouterLink>
+						</span>
 					</div>
 					<div class="description">
 						{{ item.description }}
@@ -75,26 +76,32 @@ import fetchData from "@/mixins/fetchData.js";
 import { getBlogs } from "@/api/blog.js";
 import mainScroll from "@/mixins/mainScroll.js";
 import Empty from "@/components/Empty/Empty.vue";
+import serverConfig from "@/mixins/serverConfig.js";
 export default {
-	mixins: [fetchData({ rows: [], total: 0 }), mainScroll("blogList")],
+	mixins: [
+		fetchData({ rows: [], total: 0 }),
+		mainScroll("blogList"),
+		serverConfig()
+	],
 	components: {
 		Pager,
-		Empty,
+		Empty
 	},
 	methods: {
 		async getData() {
-			return await getBlogs();
+			const result = await getBlogs();
+			return result;
 		},
 		handlePageChange(newPage) {
 			const query = {
 				page: newPage,
-				limit: this.routeInfo.limit,
+				limit: this.routeInfo.limit
 			};
 			// 如果categoryId为-1，则展示全部
 			if (this.routeInfo.categoryId === -1) {
 				this.$router.push({
 					name: "Blog",
-					query,
+					query
 				});
 			} else {
 				// 如果categoryId不为-1，则表示展示指定的分类
@@ -102,11 +109,11 @@ export default {
 					name: "BlogCategory",
 					query,
 					params: {
-						categoryId: this.$route.params.categoryId,
-					},
+						categoryId: this.$route.params.categoryId
+					}
 				});
 			}
-		},
+		}
 	},
 	computed: {
 		routeInfo() {
@@ -118,9 +125,9 @@ export default {
 				limit,
 				page,
 				categoryId,
-				total,
+				total
 			};
-		},
+		}
 	},
 	watch: {
 		$route: {
@@ -136,9 +143,9 @@ export default {
 				this.isLoading = false;
 			},
 			deep: false, // 是否监听该数据内部属性的变化，默认 false
-			immediate: false, // 是否立即执行一次 handler，默认 false
-		},
-	},
+			immediate: false // 是否立即执行一次 handler，默认 false
+		}
+	}
 };
 </script>
 
