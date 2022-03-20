@@ -1,6 +1,6 @@
 <template>
 	<div class="side-menu-container">
-		<Avatar v-if="data" :url="data.avatar" />
+		<Avatar v-if="data" :url="serverConfig.serverURL + data.avatar" />
 		<Menu />
 		<Contact />
 		<span v-if="data" class="record">{{ data.icp }}</span>
@@ -12,13 +12,15 @@ import Avatar from "@/components/Avatar/Avatar.vue";
 import Menu from "@/components/SideAside/Menu/Menu.vue";
 import Contact from "@/components/SideAside/Contact/Contact.vue";
 import { mapState } from "vuex";
+import serverConfig from "@/mixins/serverConfig.js";
 export default {
+	mixins: [serverConfig()],
 	components: {
 		Avatar,
 		Menu,
-		Contact,
+		Contact
 	},
-	computed: mapState("setting", ["data"]),
+	computed: mapState("setting", ["data"])
 };
 </script>
 
