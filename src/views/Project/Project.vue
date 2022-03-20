@@ -4,7 +4,10 @@
 			<li v-for="item in data" :key="item.id">
 				<div class="thumb">
 					<a :href="item.url" target="_blank">
-						<img v-img-lazy="item.thumb" :alt="item.name" />
+						<img
+							v-img-lazy="serverConfig.serverURL + item.thumb"
+							:alt="item.name"
+						/>
 					</a>
 				</div>
 				<div class="content">
@@ -16,12 +19,14 @@
 							><span class="github"><Icon type="github" />github</span></a
 						>
 					</div>
-					<div class="description">{{ item.description }}</div>
+					<ul class="description" v-if="item.description">
+						<li v-for="(i, index) in item.description" :key="index">{{ i }}</li>
+					</ul>
 				</div>
 			</li>
 		</ul>
 		<!-- 无数据时显示Empty组件 -->
-		<Empty v-if="data.length === 0 && !isLoading" />
+		<Empty v-if="!data && !isLoading" />
 	</div>
 </template>
 
@@ -30,17 +35,17 @@ import Icon from "@/components/Icon/Icon.vue";
 import { mapState } from "vuex";
 import mainScroll from "@/mixins/mainScroll.js";
 import Empty from "@/components/Empty/Empty.vue";
-
+import serverConfig from "@/mixins/serverConfig.js";
 export default {
-	mixins: [mainScroll("project-container")],
+	mixins: [mainScroll("project-container"), serverConfig()],
 	components: {
 		Icon,
-		Empty,
+		Empty
 	},
 	computed: mapState("project", ["data", "isLoading"]),
 	created() {
 		this.$store.dispatch("project/fetchData");
-	},
+	}
 };
 </script>
 

@@ -12,7 +12,7 @@ import showMessage from "@/utils/showMessage.js";
 Vue.prototype.$showMessage = showMessage;
 
 // 模拟后台的数据
-import "@/mock/";
+// import "@/mock/";
 
 // 为全局注册自定义指令
 import "./directives/index.js";

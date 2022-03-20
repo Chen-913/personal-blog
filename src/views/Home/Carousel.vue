@@ -6,8 +6,8 @@
 		@mouseleave="handleMouseLeave"
 	>
 		<ImageLoader
-			:src="data.bigImg"
-			:placeholder="data.midImg"
+			:src="serverConfig.serverURL + data.bigImg"
+			:placeholder="serverConfig.serverURL + data.bigImg"
 			@load="handleLoad"
 			ref="imgContainer"
 			:style="moveStyle"
@@ -23,10 +23,11 @@
 
 <script>
 import ImageLoader from "@/components/ImageLoader/ImageLoader.vue";
-
+import serverConfig from "@/mixins/serverConfig.js";
 export default {
+	mixins: [serverConfig()],
 	components: {
-		ImageLoader,
+		ImageLoader
 	},
 	props: ["data"],
 	data() {
@@ -36,7 +37,7 @@ export default {
 			wrapper: null, // 每一个轮播项的容器
 			imgContainer: null, // 包裹图片的容器
 			mouseX: 0, // 鼠标在该轮播项中的相对横坐标位置
-			mouseY: 0, // 鼠标在该轮播项中的相对纵坐标位置
+			mouseY: 0 // 鼠标在该轮播项中的相对纵坐标位置
 		};
 	},
 	computed: {
@@ -49,10 +50,10 @@ export default {
 				const disX = (-extraX / this.wrapper.width) * this.mouseX + "px";
 				const disY = (-extraY / this.wrapper.height) * this.mouseY + "px";
 				return {
-					transform: `translate(${disX}, ${disY})`,
+					transform: `translate(${disX}, ${disY})`
 				};
 			}
-		},
+		}
 	},
 
 	methods: {
@@ -76,13 +77,13 @@ export default {
 			// 将this.wrapper的内容设置为包含宽高的对象
 			this.wrapper = {
 				width: this.$refs.wrapper.clientWidth,
-				height: this.$refs.wrapper.clientHeight,
+				height: this.$refs.wrapper.clientHeight
 			};
 
 			// 将this.imgContainer的内容设置为包含宽高的对象
 			this.imgContainer = {
 				width: this.$refs.imgContainer.$el.clientWidth,
-				height: this.$refs.imgContainer.$el.clientHeight,
+				height: this.$refs.imgContainer.$el.clientHeight
 			};
 		},
 		handleMouseMove(e) {
@@ -94,7 +95,7 @@ export default {
 		handleMouseLeave() {
 			this.mouseX = this.wrapper.width / 2;
 			this.mouseY = this.wrapper.height / 2;
-		},
+		}
 	},
 
 	mounted: function () {
@@ -109,7 +110,7 @@ export default {
 	destroyed: function () {
 		// 组件被销毁时须删除该事件
 		window.removeEventListener("resize", this.setSize);
-	},
+	}
 };
 </script>
 
