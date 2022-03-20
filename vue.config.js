@@ -7,6 +7,9 @@ module.exports = {
 			"/libraries": {
 				target: "https://api.bootcdn.cn",
 			},
+			'/api': {
+				target:"http://localhost:7001",
+			}
 		},
 	},
 	configureWebpack: webpackConfig,
