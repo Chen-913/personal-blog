@@ -20,7 +20,7 @@
 				<span>{{ data.qq }}</span>
 			</a>
 			<div class="QRcode">
-				<img :src="data.qqQrCode" alt="qq" />
+				<img :src="serverConfig.serverURL + data.qqQrCode" alt="qq" />
 			</div>
 		</li>
 		<li>
@@ -29,7 +29,7 @@
 				<span>{{ data.weixin }}</span>
 			</a>
 			<div class="QRcode">
-				<img :src="data.weixinQrCode" alt="weixin" />
+				<img :src="serverConfig.serverURL + data.weixinQrCode" alt="weixin" />
 			</div>
 		</li>
 	</ul>
@@ -38,11 +38,13 @@
 <script>
 import Icon from "@/components/Icon/Icon.vue";
 import { mapState } from "vuex";
+import serverConfig from "@/mixins/serverConfig.js";
 export default {
+	mixins: [serverConfig()],
 	components: {
-		Icon,
+		Icon
 	},
-	computed: mapState("setting", ["data"]),
+	computed: mapState("setting", ["data"])
 };
 </script>
 
