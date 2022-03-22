@@ -5,7 +5,7 @@
 		</h2>
 		<div class="comment-item" v-for="item in list" :key="item.id">
 			<div class="comment-item-left">
-				<Avatar :url="serverConfig.serverURL + item.avatar" :size="50" />
+				<Avatar :url="item.avatar" :size="50" />
 			</div>
 			<div class="comment-item-right">
 				<div class="info">
@@ -24,9 +24,7 @@
 
 <script>
 import Avatar from "@/components/Avatar/Avatar.vue";
-import serverConfig from "@/mixins/serverConfig.js";
 export default {
-	mixins: [serverConfig()],
 	components: {
 		Avatar
 	},

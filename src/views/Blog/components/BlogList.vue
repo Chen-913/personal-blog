@@ -12,7 +12,7 @@
 						}"
 					>
 						<img
-							v-img-lazy="serverConfig.serverURL + item.thumb"
+							v-img-lazy="item.thumb"
 							:alt="item.title"
 							:title="item.title"
 						/>

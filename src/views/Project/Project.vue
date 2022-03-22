@@ -4,10 +4,7 @@
 			<li v-for="item in data" :key="item.id">
 				<div class="thumb">
 					<a :href="item.url" target="_blank">
-						<img
-							v-img-lazy="serverConfig.serverURL + item.thumb"
-							:alt="item.name"
-						/>
+						<img v-img-lazy="item.thumb" :alt="item.name" />
 					</a>
 				</div>
 				<div class="content">

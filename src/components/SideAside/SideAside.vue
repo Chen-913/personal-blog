@@ -1,6 +1,6 @@
 <template>
 	<div class="side-menu-container">
-		<Avatar v-if="data" :url="serverConfig.serverURL + data.avatar" />
+		<Avatar v-if="data" :url="data.avatar" />
 		<Menu />
 		<Contact />
 		<span v-if="data" class="record">{{ data.icp }}</span>

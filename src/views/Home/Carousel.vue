@@ -6,8 +6,8 @@
 		@mouseleave="handleMouseLeave"
 	>
 		<ImageLoader
-			:src="serverConfig.serverURL + data.bigImg"
-			:placeholder="serverConfig.serverURL + data.bigImg"
+			:src="data.bigImg"
+			:placeholder="data.bigImg"
 			@load="handleLoad"
 			ref="imgContainer"
 			:style="moveStyle"
@@ -23,9 +23,7 @@
 
 <script>
 import ImageLoader from "@/components/ImageLoader/ImageLoader.vue";
-import serverConfig from "@/mixins/serverConfig.js";
 export default {
-	mixins: [serverConfig()],
 	components: {
 		ImageLoader
 	},

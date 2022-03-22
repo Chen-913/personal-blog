@@ -20,7 +20,7 @@
 				<span>{{ data.qq }}</span>
 			</a>
 			<div class="QRcode">
-				<img :src="serverConfig.serverURL + data.qqQrCode" alt="qq" />
+				<img :src="data.qqQrCode" alt="qq" />
 			</div>
 		</li>
 		<li>
@@ -29,7 +29,7 @@
 				<span>{{ data.weixin }}</span>
 			</a>
 			<div class="QRcode">
-				<img :src="serverConfig.serverURL + data.weixinQrCode" alt="weixin" />
+				<img :src="data.weixinQrCode" alt="weixin" />
 			</div>
 		</li>
 	</ul>
