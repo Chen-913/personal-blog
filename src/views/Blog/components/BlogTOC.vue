@@ -36,7 +36,7 @@ export default {
           };
         });
       };
-      return addSelected(this.list.toc);
+      return addSelected(this.list?.toc);
     },
     tocDoms() {
       let arr = [];
@@ -49,7 +49,7 @@ export default {
           }
         }
       };
-      addDom(this.list.toc);
+      addDom(this.list?.toc);
       return arr;
     },
   },
