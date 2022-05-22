@@ -41,6 +41,8 @@ export default {
     tocDoms() {
       let arr = [];
       let addDom = (tocArr) => {
+        // 如果tocArr为空，则什么都不做，避免引起报错
+        if (!tocArr) return;
         for (const item of tocArr) {
           let dom = document.getElementById(item.anchor);
           arr.push(dom);
