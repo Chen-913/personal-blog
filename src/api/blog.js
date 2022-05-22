@@ -5,7 +5,7 @@ import request from "./request";
  * @returns
  */
 export async function getBlogType() {
-	return (await request.get("/api/blogtype")).data;
+  return (await request.get("/api/blogtype")).data;
 }
 
 /**
@@ -13,22 +13,22 @@ export async function getBlogType() {
  * @returns
  */
 export async function getBlogs(
-	page = 1,
-	limit = 10,
-	categoryid = -1,
-	keyword = ""
+  page = 1,
+  limit = 10,
+  categoryid = -1,
+  keyword = ""
 ) {
-	// /api/blog?page=1&limit=10
-	return (
-		await request.get("/api/blog", {
-			params: {
-				page,
-				limit,
-				categoryid,
-				keyword,
-			},
-		})
-	).data;
+  // /api/blog?page=1&limit=10
+  return (
+    await request.get("/api/blog", {
+      params: {
+        page,
+        limit,
+        categoryid,
+        keyword,
+      },
+    })
+  ).data;
 }
 
 /**
@@ -37,7 +37,7 @@ export async function getBlogs(
  * @returns
  */
 export async function getBlog(id) {
-	return (await request.get(`/api/blog/${id}`)).data;
+  return (await request.get(`/api/blog/${id}`)).data;
 }
 
 /**
@@ -48,15 +48,13 @@ export async function getBlog(id) {
  * @returns
  */
 export async function postComment(blogId, nickname, content) {
-	return (
-		await request.post("/api/comment", {
-			params: {
-				nickname,
-				content,
-				blogId,
-			},
-		})
-	).data;
+  return (
+    await request.post("/api/comment", {
+      nickname,
+      content,
+      blogId,
+    })
+  ).data;
 }
 
 /**
@@ -68,19 +66,19 @@ export async function postComment(blogId, nickname, content) {
  * @returns
  */
 export async function getComments(
-	page = 1,
-	limit = 10,
-	blogId = -1,
-	keyword = ""
+  page = 1,
+  limit = 10,
+  blogId = -1,
+  keyword = ""
 ) {
-	return (
-		await request.get("/api/comment", {
-			params: {
-				page,
-				limit,
-				blogId,
-				keyword,
-			},
-		})
-	).data;
+  return (
+    await request.get("/api/comment", {
+      params: {
+        page,
+        limit,
+        blogId,
+        keyword,
+      },
+    })
+  ).data;
 }
